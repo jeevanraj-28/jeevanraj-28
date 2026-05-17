@@ -97,6 +97,8 @@ Currently focused on production-ready ML pipelines, FastAPI backends, PyTorch/Te
 ## Latest GitHub Activity
 
 <!--START_SECTION:activity-->
+- 2026-05-17 - Pushed updates to [jeevanraj-28/Disaster-segmentation](https://github.com/jeevanraj-28/Disaster-segmentation)
+- 2026-05-17 - Pushed updates to [jeevanraj-28/cafecritic-recommender](https://github.com/jeevanraj-28/cafecritic-recommender)
 <!--END_SECTION:activity-->
 
 ---
