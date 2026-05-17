@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=28&duration=2800&pause=800&color=38BDF8&center=true&vCenter=true&width=900&lines=Jeevan+Raj+M;AI%2FML+Engineer;Building+Healthcare+AI%2C+Computer+Vision+%26+NLP+Systems;Final-year+AI+%26+Data+Science+Engineer" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=28&duration=2800&pause=800&color=38BDF8&center=true&vCenter=true&width=900&lines=Jeevan+Raj+M;AI%2FML+%26+Data+Science+Engineer;Building+ML%2C+NLP%2C+Computer+Vision+%26+Analytics+Systems;Final-year+AI+%26+Data+Science+Engineer" alt="Typing SVG" />
 
   <p>
     <a href="mailto:jeevanrajm2882004@gmail.com"><img src="https://img.shields.io/badge/Email-jeevanrajm2882004%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" /></a>
@@ -10,22 +10,22 @@
 
 </div>
 
-## AI/ML Engineer Building Applied Intelligence Systems
+## AI/ML & Data Science Engineer Building Applied Intelligence Systems
 
 Final-year B.E. Artificial Intelligence & Data Science engineer with a 9.74 GPA across 7 semesters.  
-I build practical AI systems across healthcare NLP, medical imaging, semantic segmentation, and recommender systems.  
-Currently focused on production-ready ML pipelines, FastAPI backends, PyTorch/TensorFlow models, and deployable AI demos.
+I build practical AI systems across machine learning, NLP, computer vision, recommender systems, and data analytics.  
+Currently focused on production-ready ML pipelines, model evaluation, FastAPI backends, PyTorch/TensorFlow models, and deployable AI demos.
 
 ---
 
 ## Currently Building
 
-**AI-Integrated Healthcare Platform** at **Kinetrix Technologies LLP**
+**AI/ML Systems Portfolio** across internships and independent projects
 
-- Real-time doctor voice dictation to structured clinical reports using **Whisper + BERT**
-- Radiology image analysis for X-ray, CT, and MRI support using **YOLO + ResNet**
-- EHR interoperability with **HL7 FHIR + DICOM**
-- Secure healthcare stack with **OAuth2, JWT, RBAC, FastAPI, React, PostgreSQL, AWS/Azure**
+- Data science workflows: collection, cleaning, feature engineering, model training, evaluation, and visualization
+- NLP systems: text structuring, summarization, semantic processing, and transformer-based workflows
+- Computer vision systems: semantic segmentation, object detection, image analysis, and visual diagnostics
+- ML engineering stack: Python, FastAPI, Streamlit, PyTorch, TensorFlow, Scikit-learn, PostgreSQL, AWS/Azure
 
 ---
 
@@ -72,7 +72,7 @@ Currently focused on production-ready ML pipelines, FastAPI backends, PyTorch/Te
 
 | Project | What it does | Stack |
 |---|---|---|
-| AI-Integrated Healthcare Platform | Voice-to-clinical-report NLP and radiology support system with healthcare interoperability and secure APIs. Public-safe case study coming soon. | ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) ![Whisper](https://img.shields.io/badge/Whisper-111827?style=flat-square) ![BERT](https://img.shields.io/badge/BERT-0F172A?style=flat-square) ![YOLO](https://img.shields.io/badge/YOLO-00FFFF?style=flat-square&logoColor=black) |
+| AI/ML Healthcare Platform | Internship project applying NLP, computer vision, secure APIs, and deployment workflows to a healthcare use case. Public-safe case study coming soon. | ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) ![Whisper](https://img.shields.io/badge/Whisper-111827?style=flat-square) ![BERT](https://img.shields.io/badge/BERT-0F172A?style=flat-square) ![YOLO](https://img.shields.io/badge/YOLO-00FFFF?style=flat-square&logoColor=black) |
 | [Disaster Segmentation](https://github.com/jeevanraj-28/Disaster-segmentation) | Semantic segmentation of disaster-affected zones from satellite/aerial imagery for rapid emergency response. | ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white) ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white) ![FloodNet](https://img.shields.io/badge/FloodNet-2563EB?style=flat-square) |
 | [CafeCritic Recommender](https://github.com/jeevanraj-28/cafecritic-recommender) | Hybrid recommendation engine combining SVD collaborative filtering and TF-IDF content similarity. | ![Scikit Learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=flat-square&logo=scikitlearn&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white) ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white) |
 | [Clinical NLP Demo](https://github.com/jeevanraj-28/Clinical-NLP-Demo) | Public demo that structures fake doctor notes into complaint, diagnosis, medication, follow-up, and summary fields. | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white) ![Transformers](https://img.shields.io/badge/Transformers-FFD21E?style=flat-square&logo=huggingface&logoColor=black) |
@@ -105,10 +105,10 @@ Currently focused on production-ready ML pipelines, FastAPI backends, PyTorch/Te
 
 ## Focus Areas
 
-- Healthcare AI: clinical NLP, structured medical reports, radiology intelligence
+- Machine Learning: supervised learning, feature engineering, model evaluation, reproducible pipelines
+- Data Science: EDA, statistical modelling, visualization, analytics workflows
 - Computer Vision: semantic segmentation, object detection, disaster assessment
-- Recommender Systems: collaborative filtering, content-based ranking, hybrid fusion
-- ML Engineering: model evaluation, feature engineering, API deployment, reproducible pipelines
+- NLP & Recommenders: transformers, text structuring, collaborative filtering, content-based ranking
 
 ---
 
