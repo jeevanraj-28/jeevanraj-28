@@ -1,0 +1,67 @@
+name: Update Profile README
+
+on:
+  schedule:
+    - cron: "30 2 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    name: Update latest commits and pushes
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout profile repository
+        uses: actions/checkout@v4
+
+      - name: Build latest activity section
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const username = "jeevanraj-28";
+            const readmePath = "README.md";
+            const start = "<!--START_SECTION:activity-->";
+            const end = "<!--END_SECTION:activity-->";
+
+            const { data: events } = await github.rest.activity.listPublicEventsForUser({
+              username,
+              per_page: 50
+            });
+
+            const rows = [];
+
+            for (const event of events) {
+              if (event.type !== "PushEvent") continue;
+
+              const repo = event.repo.name;
+              const repoUrl = `https://github.com/${repo}`;
+              const date = new Date(event.created_at).toISOString().slice(0, 10);
+              const commits = event.payload.commits || [];
+
+              if (commits.length === 0) {
+                rows.push(`- ${date} - Pushed updates to [${repo}](${repoUrl})`);
+              }
+
+              for (const commit of commits) {
+                const sha = commit.sha.slice(0, 7);
+                const message = commit.message.split("\n")[0].replace(/\|/g, "-");
+                const commitUrl = `${repoUrl}/commit/${commit.sha}`;
+                rows.push(`- ${date} - Pushed [\`${sha}\`](${commitUrl}) to [${repo}](${repoUrl}) - ${message}`);
+              }
+
+              if (rows.length >= 5) break;
+            }
+
+            const activity = rows.slice(0, 5).join("\n") || "- No recent public push activity found.";
+            const readme = fs.readFileSync(readmePath, "utf8");
+            const pattern = new RegExp(`${start}[\\s\\S]*?${end}`);
+            const nextReadme = readme.replace(pattern, `${start}\n${activity}\n${end}`);
+            fs.writeFileSync(readmePath, nextReadme);
+
+      - name: Commit README changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update latest GitHub activity"
+          file_pattern: README.md
