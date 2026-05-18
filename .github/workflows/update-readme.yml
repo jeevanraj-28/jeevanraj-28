@@ -1,67 +1,129 @@
-name: Update Profile README
+name: Update README with Latest Activity
 
 on:
   schedule:
-    - cron: "30 2 * * *"
-  workflow_dispatch:
+    - cron: '0 0 * * *'   # Runs daily at midnight UTC
+  workflow_dispatch:        # Allow manual trigger
 
 jobs:
   update-readme:
-    name: Update latest commits and pushes
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
-      - name: Checkout profile repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build latest activity section
-        uses: actions/github-script@v7
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          script: |
-            const fs = require("fs");
-            const username = "jeevanraj-28";
-            const readmePath = "README.md";
-            const start = "<!--START_SECTION:activity-->";
-            const end = "<!--END_SECTION:activity-->";
+          python-version: '3.11'
 
-            const { data: events } = await github.rest.activity.listPublicEventsForUser({
-              username,
-              per_page: 50
-            });
+      - name: Fetch latest activity and update README
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 << 'SCRIPT'
+          import json
+          import urllib.request
+          import re
+          import os
 
-            const rows = [];
+          USERNAME = "jeevanraj-28"
+          TOKEN = os.environ.get("GITHUB_TOKEN", "")
 
-            for (const event of events) {
-              if (event.type !== "PushEvent") continue;
+          headers = {
+              "Accept": "application/vnd.github+json",
+              "User-Agent": "readme-updater",
+          }
+          if TOKEN:
+              headers["Authorization"] = f"Bearer {TOKEN}"
 
-              const repo = event.repo.name;
-              const repoUrl = `https://github.com/${repo}`;
-              const date = new Date(event.created_at).toISOString().slice(0, 10);
-              const commits = event.payload.commits || [];
+          url = f"https://api.github.com/users/{USERNAME}/events/public?per_page=30"
+          req = urllib.request.Request(url, headers=headers)
+          with urllib.request.urlopen(req) as resp:
+              events = json.loads(resp.read().decode())
 
-              if (commits.length === 0) {
-                rows.push(`- ${date} - Pushed updates to [${repo}](${repoUrl})`);
-              }
+          lines = []
+          seen = set()
+          for event in events:
+              if len(lines) >= 5:
+                  break
 
-              for (const commit of commits) {
-                const sha = commit.sha.slice(0, 7);
-                const message = commit.message.split("\n")[0].replace(/\|/g, "-");
-                const commitUrl = `${repoUrl}/commit/${commit.sha}`;
-                rows.push(`- ${date} - Pushed [\`${sha}\`](${commitUrl}) to [${repo}](${repoUrl}) - ${message}`);
-              }
+              repo = event.get("repo", {}).get("name", "")
+              etype = event.get("type", "")
+              created = event.get("created_at", "")[:10]
 
-              if (rows.length >= 5) break;
-            }
+              if etype == "PushEvent":
+                  key = f"push-{repo}-{created}"
+                  if key in seen:
+                      continue
+                  seen.add(key)
+                  commits = event.get("payload", {}).get("commits", [])
+                  msg = commits[-1]["message"].split("\n")[0] if commits else "updates"
+                  lines.append(f"- `{created}` — Pushed to [{repo}](https://github.com/{repo}): *{msg}*")
 
-            const activity = rows.slice(0, 5).join("\n") || "- No recent public push activity found.";
-            const readme = fs.readFileSync(readmePath, "utf8");
-            const pattern = new RegExp(`${start}[\\s\\S]*?${end}`);
-            const nextReadme = readme.replace(pattern, `${start}\n${activity}\n${end}`);
-            fs.writeFileSync(readmePath, nextReadme);
+              elif etype == "CreateEvent":
+                  ref_type = event.get("payload", {}).get("ref_type", "")
+                  ref = event.get("payload", {}).get("ref", "")
+                  key = f"create-{repo}-{ref_type}-{ref}-{created}"
+                  if key in seen:
+                      continue
+                  seen.add(key)
+                  if ref_type == "repository":
+                      lines.append(f"- `{created}` — Created new repo [{repo}](https://github.com/{repo})")
+                  elif ref_type == "branch":
+                      lines.append(f"- `{created}` — Created branch `{ref}` in [{repo}](https://github.com/{repo})")
 
-      - name: Commit README changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore: update latest GitHub activity"
-          file_pattern: README.md
+              elif etype == "IssuesEvent":
+                  action = event.get("payload", {}).get("action", "")
+                  title = event.get("payload", {}).get("issue", {}).get("title", "")
+                  key = f"issue-{repo}-{title}-{created}"
+                  if key in seen:
+                      continue
+                  seen.add(key)
+                  lines.append(f"- `{created}` — {action.capitalize()} issue in [{repo}](https://github.com/{repo}): *{title}*")
+
+              elif etype == "PullRequestEvent":
+                  action = event.get("payload", {}).get("action", "")
+                  title = event.get("payload", {}).get("pull_request", {}).get("title", "")
+                  key = f"pr-{repo}-{title}-{created}"
+                  if key in seen:
+                      continue
+                  seen.add(key)
+                  lines.append(f"- `{created}` — {action.capitalize()} PR in [{repo}](https://github.com/{repo}): *{title}*")
+
+              elif etype == "WatchEvent":
+                  key = f"star-{repo}-{created}"
+                  if key in seen:
+                      continue
+                  seen.add(key)
+                  lines.append(f"- `{created}` — ⭐ Starred [{repo}](https://github.com/{repo})")
+
+          if not lines:
+              lines.append("- No recent public activity")
+
+          activity_text = "\n".join(lines)
+
+          with open("README.md", "r", encoding="utf-8") as f:
+              readme = f.read()
+
+          pattern = r"(<!--START_SECTION:activity-->).*?(<!--END_SECTION:activity-->)"
+          replacement = f"\\1\n{activity_text}\n\\2"
+          updated = re.sub(pattern, replacement, readme, flags=re.DOTALL)
+
+          with open("README.md", "w", encoding="utf-8") as f:
+              f.write(updated)
+
+          print("README updated with latest activity:")
+          print(activity_text)
+          SCRIPT
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --cached --quiet || git commit -m "chore: auto-update README with latest activity"
+          git push
