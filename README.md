@@ -159,6 +159,11 @@ Streamlit app that structures synthetic doctor notes into Chief Complaint / Diag
 
 ## 📡 Latest Activity
 <!--START_SECTION:activity-->
+- `2026-05-18` — Pushed to [jeevanraj-28/jeevanraj-28.github.io](https://github.com/jeevanraj-28/jeevanraj-28.github.io): *updates*
+- `2026-05-18` — Pushed to [jeevanraj-28/Disaster-segmentation](https://github.com/jeevanraj-28/Disaster-segmentation): *updates*
+- `2026-05-18` — Pushed to [jeevanraj-28/Clinical-NLP-Demo](https://github.com/jeevanraj-28/Clinical-NLP-Demo): *updates*
+- `2026-05-18` — Pushed to [jeevanraj-28/jeevanraj-28](https://github.com/jeevanraj-28/jeevanraj-28): *updates*
+- `2026-05-17` — Pushed to [jeevanraj-28/jeevanraj-28](https://github.com/jeevanraj-28/jeevanraj-28): *updates*
 <!--END_SECTION:activity-->
 
 ---
