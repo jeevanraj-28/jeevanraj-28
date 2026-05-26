@@ -2,7 +2,7 @@
 
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,50:1e3a5f,100:38bdf8&height=220&section=header&text=Jeevan%20Raj%20M&fontSize=52&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=AI%2FML%20Engineer%20%E2%80%A2%20Healthcare%20AI%20%E2%80%A2%20Computer%20Vision%20%E2%80%A2%20NLP&descSize=18&descAlignY=55&descColor=94a3b8" width="100%" />
 
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=24&duration=2500&pause=1000&color=38BDF8&center=true&vCenter=true&multiline=true&repeat=true&width=800&height=80&lines=Building+AI+systems+that+solve+real+healthcare+problems+%F0%9F%8F%A5;From+clinical+NLP+pipelines+to+radiology+computer+vision+%F0%9F%94%AC" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&duration=2500&pause=1000&color=38BDF8&center=true&vCenter=true&multiline=true&repeat=true&width=680&height=70&lines=Building+AI+systems+that+solve+real+healthcare+problems+%F0%9F%8F%A5;From+clinical+NLP+pipelines+to+radiology+computer+vision+%F0%9F%94%AC" alt="Typing SVG" />
 
 </div>
 
