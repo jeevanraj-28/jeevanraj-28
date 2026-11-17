@@ -24,8 +24,10 @@ I build applied ML systems and measure them: retrieval pipelines with recall@k e
 | **[Disaster Segmentation](https://github.com/jeevanraj-28/Disaster-segmentation)** | Pixel-level flood damage maps from drone images (FloodNet, 10 classes). U-Net with a ResNet34 encoder in PyTorch | 70.7% mean IoU on 448 held-out test images. Small objects (vehicles, pools) are the main error, analysed per class |
 | **[Clinical NLP Demo](https://github.com/jeevanraj-28/Clinical-NLP-Demo)** | Turns synthetic doctor dictation into structured sections and a medication list, with negation handling and a summary checked for invented numbers | Micro F1 0.71 → 0.97 on 20 held-out labelled notes; negated findings listed as complaints 6 of 9 → 0 of 9 |
 | **[CafeCritic](https://github.com/jeevanraj-28/cafecritic-recommender)** | Cafe recommender: TF-IDF similarity on cafe profiles combined with rating, in Streamlit | A data audit showed every reviewer had one rating, so collaborative filtering could not work; redesigned around what the data supports |
+| **[Cortex](https://github.com/jeevanraj-28/cortex)** | Local-first, read-only system observer: a daemon records process and system telemetry to SQLite and serves it through a CLI, a loopback REST API and a terminal UI | Every statement is labelled OBSERVED, CORRELATED or HYPOTHESIS and links back to the raw observation IDs; commands use a fixed grammar instead of free text |
+| **[CARE EMR + AI Scribe](https://github.com/jeevanraj-28/care)** *(in progress)* | Self-hosted deployment of the open-source CARE EMR (Django, React, PostgreSQL, Redis, Celery) with Metabase analytics and an AI Scribe on a cloud GPU | The scribe transcribes speech with Whisper and fills EMR forms with Qwen2.5 |
 
-Every project has a README with setup steps, results, what failed and what I changed, plus tests that run on each push.
+Each project README covers setup, results, what failed and what I changed. Lumina, Disaster Segmentation, Clinical NLP and CafeCritic run their tests on every push.
 
 ---
 
