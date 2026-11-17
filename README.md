@@ -26,7 +26,6 @@ I build applied ML systems and measure them: retrieval pipelines with recall@k e
 | **[CafeCritic](https://github.com/jeevanraj-28/cafecritic-recommender)** | Cafe recommender: TF-IDF similarity on cafe profiles combined with rating, in Streamlit | A data audit showed every reviewer had one rating, so collaborative filtering could not work; redesigned around what the data supports |
 | **[Cortex](https://github.com/jeevanraj-28/cortex)** | Local-first, read-only system observer: a daemon records process and system telemetry to SQLite and serves it through a CLI, a loopback REST API and a terminal UI | Every statement is labelled OBSERVED, CORRELATED or HYPOTHESIS and links back to the raw observation IDs; commands use a fixed grammar instead of free text |
 | **[CARE EMR + AI Scribe](https://github.com/jeevanraj-28/care)** *(in progress)* | Self-hosted deployment of the open-source CARE EMR (Django, React, PostgreSQL, Redis, Celery) with Metabase analytics and an AI Scribe on a cloud GPU | The scribe transcribes speech with Whisper and fills EMR forms with Qwen2.5 |
-| **[FuturePath AI](https://github.com/jeevanraj-28/futurepathaiv2)** | Career guidance platform for Indian Class 10/12 students: a 40-question, 16-dimension aptitude test, explainable career matching, roadmaps and an AI mentor. TypeScript, React, Node.js, Prisma | The mentor (Gemini/OpenAI) has guardrails against invented cut-offs and a deterministic fallback when no API key is set; unit, end-to-end and accessibility tests |
 
 Each project README covers setup, results, what failed and what I changed. Lumina, Disaster Segmentation, Clinical NLP and CafeCritic run their tests on every push.
 
@@ -39,8 +38,6 @@ Each project README covers setup, results, what failed and what I changed. Lumin
 **LLMs and retrieval:** RAG, embeddings, FAISS, chunking, retrieval evaluation (recall@k, MRR), prompt design, Ollama
 
 **Serving and tools:** FastAPI, Celery, Docker, Streamlit, PostgreSQL, Git, Linux, GitHub Actions
-
-**Web:** TypeScript, React, Node.js
 
 ---
 
